@@ -362,7 +362,7 @@ function init_env() {
         fi
         
         local CONN_STR="${!VAR_NAME}"
-        local MASKED_STR=$(echo "${CONN_STR}" | sed 's|postgresql://[^:]*:[^@]*|postgresql://***:***|')
+        local MASKED_STR=$(echo "${CONN_STR}" | sed -E 's|postgres(ql)?://[^:]*:[^@]*|postgresql://***:***|')
         color yellow "POSTGRES_CONNECTION_${i}: ${MASKED_STR}"
         ((i++))
     done
