@@ -27,7 +27,7 @@ You can get the token by the following command.
 ```shell
 docker run --rm -it \
   --mount type=volume,source=rclone-backup-data,target=/config/rclone \
- ghcr.io/tgdrive/rclone-backup:latest \
+ ghcr.io/benjithatfoxguy/bclone-backup:latest \
   rclone config
 ```
 
@@ -38,7 +38,7 @@ After setting, check the configuration content by the following command.
 ```shell
 docker run --rm -it \
   --mount type=volume,source=rclone-backup-data,target=/config/rclone \
- ghcr.io/tgdrive/rclone-backup:latest \
+ ghcr.io/benjithatfoxguy/bclone-backup:latest \
   rclone config show
 ```
 
@@ -86,7 +86,7 @@ You can view the current remote name with the following command.
 ```shell
 docker run --rm -it \
   --mount type=volume,source=rclone-backup-data,target=/config/rclone \
- ghcr.io/tgdrive/rclone-backup:latest \
+ ghcr.io/benjithatfoxguy/bclone-backup:latest \
   rclone config show
 ```
 
@@ -261,7 +261,7 @@ If you prefer using an env file instead of environment variables, you can map th
 ```shell
 docker run -d \
   --mount type=bind,source=/path/to/env,target=/.env \
- ghcr.io/tgdrive/rclone-backup:latest
+ ghcr.io/benjithatfoxguy/bclone-backup:latest
 ```
 
 
@@ -272,7 +272,7 @@ As an alternative to passing sensitive information via environment variables, `_
 ```shell
 docker run -d \
   -e ZIP_PASSWORD_FILE=/run/secrets/zip-password \
- ghcr.io/tgdrive/rclone-backup:latest
+ ghcr.io/benjithatfoxguy/bclone-backup:latest
 ```
 
 ## About Priority
@@ -284,11 +284,11 @@ We will use the environment variables first, followed by the contents of the fil
 You can use the following command to test mail sending. Remember to replace your SMTP variables.
 
 ```shell
-docker run --rm -it -e MAIL_SMTP_VARIABLES='<your smtp variables>'ghcr.io/tgdrive/rclone-backup:latest mail <mail send to>
+docker run --rm -it -e MAIL_SMTP_VARIABLES='<your smtp variables>'ghcr.io/benjithatfoxguy/bclone-backup:latest mail <mail send to>
 
 # Or
 
-docker run --rm -it -e MAIL_SMTP_VARIABLES='<your smtp variables>' -e MAIL_TO='<mail send to>'ghcr.io/tgdrive/rclone-backup:latest mail
+docker run --rm -it -e MAIL_SMTP_VARIABLES='<your smtp variables>' -e MAIL_TO='<mail send to>'ghcr.io/benjithatfoxguy/bclone-backup:latest mail
 ```
 
 ## Advanced

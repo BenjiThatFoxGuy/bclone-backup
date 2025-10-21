@@ -6,7 +6,7 @@ ENV LOCALTIME_FILE="/tmp/localtime"
 
 COPY scripts/*.sh /app/
 
-COPY --from=ghcr.io/tgdrive/rclone /usr/local/bin/rclone /usr/bin/rclone
+COPY --from=ghcr.io/benjithatfoxguy/bclone /usr/local/bin/rclone /usr/bin/rclone
 
 RUN mkdir -p /backup \
   && chmod +x /app/*.sh \
