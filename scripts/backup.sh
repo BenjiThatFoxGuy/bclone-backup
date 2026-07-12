@@ -85,7 +85,9 @@ function backup() {
 
     backup_folders
 
-    backup_db_postgresql
+    if [[ "${BACKUP_DATABASE_ENABLE}" == "TRUE" ]]; then
+        backup_db_postgresql
+    fi
 }
 
 function backup_package() {

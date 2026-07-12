@@ -266,6 +266,15 @@ function init_env() {
     # export
     export_env_file
 
+    # BACKUP_DATABASE_ENABLE
+    get_env BACKUP_DATABASE_ENABLE
+    BACKUP_DATABASE_ENABLE=$(echo "${BACKUP_DATABASE_ENABLE}" | tr '[a-z]' '[A-Z]')
+    if [[ "${BACKUP_DATABASE_ENABLE}" == "FALSE" ]]; then
+        BACKUP_DATABASE_ENABLE="FALSE"
+    else
+        BACKUP_DATABASE_ENABLE="TRUE"
+    fi
+
     init_env_db
     init_env_mail
 
@@ -403,6 +412,10 @@ function init_env() {
 }
 
 function init_env_db() {
+    if [[ "${BACKUP_DATABASE_ENABLE}" != "TRUE" ]]; then
+        return 0
+    fi
+
     local i=0
     local found=0
     
