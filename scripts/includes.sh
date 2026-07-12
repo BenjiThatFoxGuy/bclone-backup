@@ -266,7 +266,7 @@ function init_env() {
     # export
     export_env_file
 
-    # BACKUP_DATABASE_ENABLE
+    # BACKUP_DATABASE_ENABLE (optional override to disable DB backup; defaults to TRUE)
     get_env BACKUP_DATABASE_ENABLE
     BACKUP_DATABASE_ENABLE=$(echo "${BACKUP_DATABASE_ENABLE}" | tr '[a-z]' '[A-Z]')
     if [[ "${BACKUP_DATABASE_ENABLE}" == "FALSE" ]]; then
@@ -412,7 +412,8 @@ function init_env() {
 }
 
 function init_env_db() {
-    if [[ "${BACKUP_DATABASE_ENABLE}" != "TRUE" ]]; then
+    # Explicit override: user set BACKUP_DATABASE_ENABLE=FALSE to disable DB backup
+    if [[ "${BACKUP_DATABASE_ENABLE}" == "FALSE" ]]; then
         return 0
     fi
 
@@ -434,6 +435,7 @@ function init_env_db() {
         elif [[ $i -eq 0 ]]; then
             color red "PostgreSQL connection string not found"
             color red "Please configure PG_CONNECTION_STRING"
+            color red "Or set BACKUP_DATABASE_ENABLE=FALSE to disable database backup"
             exit 1
         else
             break
@@ -444,6 +446,7 @@ function init_env_db() {
     if [[ $found -eq 0 ]]; then
         color red "No valid PostgreSQL connection strings found"
         color red "Please configure at least PG_CONNECTION_STRING"
+        color red "Or set BACKUP_DATABASE_ENABLE=FALSE to disable database backup"
         exit 1
     fi
 }
