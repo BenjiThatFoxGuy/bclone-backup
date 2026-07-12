@@ -77,6 +77,14 @@ If not, the password will be asked for interactively.
 
 Postgres Connection String
 
+#### BACKUP_DATABASE_ENABLE
+
+Set to `FALSE` to disable PostgreSQL database backup. By default (when unset or any value other than `FALSE`), the database backup is enabled and `PG_CONNECTION_STRING` is required.
+
+This is useful when you only want to back up folders and don't need a database backup — set `BACKUP_DATABASE_ENABLE=FALSE` to skip the `PG_CONNECTION_STRING` requirement.
+
+Default: `TRUE`
+
 #### RCLONE_REMOTE_NAME
 
 The name of the Rclone remote, which needs to be consistent with the remote name in the rclone config.

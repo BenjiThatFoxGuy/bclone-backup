@@ -4,13 +4,21 @@
 
 #### PG_CONNECTION_STRING
 
-PostgreSQL connection URL in DSN format, **required**.
+PostgreSQL connection URL in DSN format, **required** (unless `BACKUP_DATABASE_ENABLE=FALSE`).
 Format: `postgresql://username:password@host:port/database`
 
 Example:
 ```
 PG_CONNECTION_STRING="postgresql://user:pass@localhost:5432/mydb"
 ```
+
+#### BACKUP_DATABASE_ENABLE
+
+Set to `FALSE` to disable the PostgreSQL database backup. When disabled, `PG_CONNECTION_STRING` is not required and the database backup step is skipped entirely.
+
+This is useful if you only want to back up folders without a database — set `BACKUP_DATABASE_ENABLE=FALSE` and omit `PG_CONNECTION_STRING`.
+
+Default: `TRUE` (database backup enabled, `PG_CONNECTION_STRING` required)
 
 #### Connecting to Multiple Databases
 
@@ -27,7 +35,9 @@ PG_CONNECTION_STRING_2="postgresql://user2:pass2@host2:5432/db2"
 
 ## Backup
 
-Specify the above environment variables to switch to the PostgreSQL database.
+Specify the above environment variables to enable PostgreSQL database backup.
+
+If you only want to back up folders and skip the database backup entirely, set `BACKUP_DATABASE_ENABLE=FALSE` and omit `PG_CONNECTION_STRING`.
 
 <br>
 
